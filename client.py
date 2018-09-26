@@ -10,7 +10,7 @@ parent_dir = "mcafee"
 
 class cmdFile:
     def __init__(self, session):
-        self.proxy_ip = sys.stdin.readline().replace("\n", "") or "studvol1.vit.ac.in"#input("\nEnter IP/HOST: ") or "studvol1.vit.ac.in"
+        self.proxy_ip = sys.stdin.readline().replace("\n", "")
         self.proxy_port = int(sys.stdin.readline().replace("\n", "") or "21")#input("\nEnter Port: ") or "21")
         self.proxy_user = sys.stdin.readline().replace("\n", "")#input("\nEnter User: ") or "anonymous"
         self.proxy_pass = sys.stdin.readline().replace("\n", "")#input("\nEnter Pass: ") or "anonymous"
