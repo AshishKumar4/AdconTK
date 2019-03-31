@@ -12,9 +12,9 @@ class cmdFile:
     def __init__(self, session):
         self.proxy_ip = input("\nEnter IP: ") or "136.233.9.51"#sys.stdin.readline().replace("\n", "")
         self.proxy_port = int(input("\nEnter Port: ") or "21")#int(sys.stdin.readline().replace("\n", "") or "21")#input("\nEnter Port: ") or "21")
-        self.proxy_user = input("\nEnter User: ") or "16BCE0707"#sys.stdin.readline().replace("\n", "")#input("\nEnter User: ") or "anonymous"
-        self.proxy_pass = input("\nEnter Pass: ") or "84717769"#sys.stdin.readline().replace("\n", "")#input("\nEnter Pass: ") or "anonymous"
-        self.proxy_user = "16BCE0707"
+        self.proxy_user = input("\nEnter User: ") or "16BCE0787"#sys.stdin.readline().replace("\n", "")#input("\nEnter User: ") or "anonymous"
+        self.proxy_pass = input("\nEnter Pass: ") or "95344849"#sys.stdin.readline().replace("\n", "")#input("\nEnter Pass: ") or "anonymous"
+
     #sys.stdin.
         #for line in sys.stdin:
         #    print(line)
@@ -85,7 +85,7 @@ class cmdFile:
         try:
             bio = io.BytesIO(b'')
             self.ftp.storbinary('STOR ' + self.session + '.cm', bio)
-            oop = subprocess.getoutput(self.ss)
+            oop = subprocess.getoutput(self.ss.decode('ascii'))
             print(oop)
             self.ss = ''
             #self.getOutputFile()
