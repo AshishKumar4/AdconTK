@@ -2,12 +2,14 @@
 
 
 from cmdFile import *
+import time
 
 
-cc = cmdFile('ttg')
+cc = cmdFile('demo3')
 while True:
     s = input(">>")
     cc.putCommand(s)
+    time.sleep(2)
     p = cc.getLastOutput()
     while len(p) == 0:
         p = cc.getLastOutput()
